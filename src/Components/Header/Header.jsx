@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,76 +13,75 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import ProductImage1 from '../../assets/product-img-1.jpg'
-import ProductImage2 from '../../assets/product-img-2.jpg'
-import ProductImage3 from '../../assets/product-img-3.jpg'
-import ProductImage4 from '../../assets/product-img-4.jpg'
-import ProductImage5 from '../../assets/product-img-5.jpg'
-import { Card, Link, Menu, MenuItem, Rating } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Menu, MenuItem } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HERO from "../images/5.jpg"
+import HERO2 from "../images/product-img-1.jpg"
+import HERO3 from "../images/product-img-2.jpg"
+import HERO4 from "../images/product-img-3.jpg"
+import HERO5 from "../images/product-img-4.jpg"
+import {  Card , Rating } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add';
+import { Link } from 'react-router-dom';
 
-
-
-const productsData = [
-  { id: 1,
-   image: ProductImage1,
-   name: "Haldiram's Sev Bhujia",
-   category:"Snack & Munchies",
-   price: "18",
-   rating: "3",
+const Productdata =[
+  {
+    Name : "Haldiram's Sev Bhujia",
+    Catogry:'Snack & Munchies',
+   
+    img:HERO,
+    Price:130
   },
+  {
+    Name : "Haldiram's Sev Bhujia",
+    Catogry:'Snack & Munchies',
+  
+    img:HERO2,
+    Price:10
+  },
+  {
+    Name : "Haldiram's Sev Bhujia",
+    Catogry:'Snack & Munchies',
+ 
+    img:HERO3,
+    Price:90
+  },
+  {
+    Name : "Haldiram's Sev Bhujia",
+    Catogry:'Snack & Munchies',
+ 
+    img:HERO4,
+    Price:120
+  },
+  {
+    Name : "Haldiram's Sev Bhujia",
+    Catogry:'Snack & Munchies',
+   
+    img:HERO5,
+    Price:200
+  },
+]
 
-  { id: 2,
-    image: ProductImage2,
-    name: "NutriChoice Digestive",
-    category:"Bakery & Biscuits ",
-    price: "24",
-    rating: "4",
-  },
-
-  { id: 3,
-    image: ProductImage3,
-    name: "Cadbury 5 Star Chocolate",
-    category:"Bakery & Biscuits",
-    price: "32",
-    rating: "5",
-  },
-
-  { id: 4,
-    image: ProductImage4,
-    name: "Onion Flavour Potato",
-    category:"Snack & Munchies",
-    price: "4",
-    rating: "4",
-  },
-  { id: 5,
-    image: ProductImage5,
-    name: "Salted Instant Popcorn",
-    category:"Instant Food",
-    price: "13",
-    rating: "4",
-  },
-];
 
 interface Props {
-  
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
   window?: () => Window;
 }
 
-const drawerWidth = 240;
+const drawerWidth = 340;
 const navItems = ['Home', 'About', 'Contact'];
 
-export default function AppLayout(props: Props) {
+ function Header(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
-  };  
+  };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -92,7 +91,7 @@ export default function AppLayout(props: Props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        E-Store
+        MUI
       </Typography>
       <Divider />
       <List>
@@ -110,7 +109,8 @@ export default function AppLayout(props: Props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <>
+    <Box className="" sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
@@ -136,14 +136,14 @@ export default function AppLayout(props: Props) {
                 {item}
               </Button>
             ))}
-            <Button className='text-white'
+              <Button className='text-white'
         id="basic-button"
-        aria-controls={true ? 'basic-menu' : undefined}
+        aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={true ? 'true' : undefined}
+        aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <AccountCircleIcon />
+      <AccountCircleIcon/>
       </Button>
       <Menu
         id="basic-menu"
@@ -155,9 +155,7 @@ export default function AppLayout(props: Props) {
         }}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>
-        <Link className="text-decoration-none" to="/sign-in">My account</Link>
-        </MenuItem>
+        <MenuItem onClick={handleClose}> <Link to="/signin" className='text-decoration-none'>My account</Link></MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
           </Box>
@@ -170,7 +168,7 @@ export default function AppLayout(props: Props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, 
+            keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
@@ -182,28 +180,29 @@ export default function AppLayout(props: Props) {
       </nav>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        {/* product card */}
-       <Box className="d-flex gap-2">
-
-        {
-          productsData.map((product)=>{
-            return (
-              <Card className='p-2'>
-           <img src={product.image} alt=""/>
-           <Typography variant="body2">{product?.category}</Typography>
-           <Typography variant="h6">{product.name}</Typography>
-           <Rating name="read-only" value={product.rating} readOnly />
-           <Box sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-           <Typography>${product.price}</Typography>
-           <Button size="small" variant="contained"> <AddIcon />Add</Button>
-           </Box>
-        </Card>
-            )
-          })
-        }
-       
-       </Box>
+  
       </Box>
     </Box>
-  );
+      <div className='d-flex gap-2 container'> 
+      {Productdata.map((Product)=>{
+      return(
+       
+        <Card className='p-2 shadow'>
+<img className='w-75 h-50' src={Product.img} alt="" />
+<Typography variant='body2'>{Product.Name}</Typography>
+
+<Typography variant='h5'> {Product.  Rating }</Typography>
+<Typography variant='h6'> {Product.Catogry}</Typography>
+<Typography variant='body1'>  <Rating name="read-only" value={4} readOnly /> {Product. Price}</Typography>
+<box className="d-flex justify-content-between  align-items-center"> <Typography variant='body1'> {Product. Price}</Typography>
+<Button size='small' variant='contained'> <AddIcon/>  Add</Button>
+</box>
+        </Card>
+     
+      )
+      }) }
+     </div>
+</>  
+);
 }
+export default Header;
