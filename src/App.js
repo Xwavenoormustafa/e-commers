@@ -1,13 +1,12 @@
-
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Header from './Components/Header/Header';
-import Product from './Components/Products/Product';
 import Signin from './Components/Signin/Signin';
 import Signup from './Components/Signup/Signup';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Errorpage from './Components/errorpage/Errorpage';
+import ProductsCard from './Components/ProductsCard/productsCard';
 
 
 
@@ -28,10 +27,7 @@ function App() {
   ])
   return (
     <div >
-      {/* < Header/> */}
-  {/* < Product/>
-  <Signin/>
-  <Signup/> */}
+ <ProductsCard /> 
   <RouterProvider router={router} />
     </div>
   );
